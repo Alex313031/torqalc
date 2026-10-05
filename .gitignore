@@ -1,0 +1,32 @@
+# OS Stuff
+.DS_Store
+.eslintcache
+.directory
+Thumbs.db
+
+# MSVS Stuff
+*.vcxproj.user
+*.tlog
+*.vs/
+/.vs/
+/.idea/
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Built Files
+*.a
+*.d
+*.o
+*.lo
+*.obj
+*.pdb
+*.res
+*.stamp
+/x86/
+/x64/
+*Debug/
+*Release/
+torqalc.exe
