@@ -1,0 +1,24 @@
+static_library("torqlogger") {
+  configs += [ ":torqlogger_config" ]
+  precompiled_header = "logging_base.h"
+  precompiled_source = "pch.cc"
+  sources = [
+    "check.h",
+    "check.cc",
+    "console.h",
+    "console.cc",
+    "file_util.h",
+    "file_util.cc",
+    "logging.h",
+    "logging.cc",
+    "logging_base.h",
+  ]
+}
+
+config("torqlogger_config") {
+  include_dirs = [
+    "./",
+  ]
+}
+
+

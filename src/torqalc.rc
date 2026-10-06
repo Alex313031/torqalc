@@ -1,0 +1,147 @@
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+
+#include "version.h"
+
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include <windows.h>
+#include <commctrl.h>
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+#include <winres.h>
+
+#ifdef __MINGW32__
+#include <winuser.h>
+#endif // __MINGW32__
+
+#undef APSTUDIO_READONLY_SYMBOLS
+
+// Embed manifest for common controls and UTF-8 support
+#if defined(__MINGW32__) || defined(__clang__)
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "res/torqalc.manifest"
+#endif // __MINGW32__ || __clang__
+
+// Application Icons
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+
+IDI_MAIN     ICON  "res/main.ico"
+IDI_SMALL    ICON  "res/small.ico"
+IDI_ABOUT    ICON  "res/about.ico"
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_NEUTRAL
+#endif
+
+#ifdef APSTUDIO_INVOKED
+
+1 TEXTINCLUDE
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""version.h""\r\n"
+    "#endif\r\n"
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+#endif // APSTUDIO_INVOKED
+
+// Main Application Menu
+IDR_MAIN MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        // MENUITEM "&Save Results",    IDM_SAVEAS
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",               IDM_EXIT
+    END
+    POPUP "&Settings"
+    BEGIN
+        MENUITEM "Clear &Results",  IDM_CLEAR
+        MENUITEM SEPARATOR
+        POPUP "Default &Line Voltage"
+        BEGIN
+            MENUITEM "115 Volts", IDM_115VAC, CHECKED
+            MENUITEM "230 Volts", IDM_230VAC
+        END
+    END
+    POPUP "&Dev"
+    BEGIN
+        MENUITEM "Toggle &Console", IDM_CONSOLE
+       
+    END
+    POPUP "&About"
+    BEGIN
+        MENUITEM "&Help",    IDM_HELP
+        MENUITEM SEPARATOR
+        MENUITEM "A&bout",   IDM_ABOUT
+    END
+END
+
+// Keyboard Accelerators
+IDR_MAIN ACCELERATORS
+BEGIN
+    "?",       IDM_ABOUT,   ASCII,   ALT      // '?' key  - About
+    VK_OEM_2,  IDM_ABOUT,   VIRTKEY, ALT      // '/' key  - About
+END
+
+// About Dialog Box
+// Everything is RES, X, Y, Width, Height, Style
+IDD_ABOUTDLG DIALOGEX 14, 7, 132, 66
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_DLGFRAME
+CAPTION ABOUT_TITLE
+FONT 8, "MS Shell Dlg 2"
+BEGIN
+    ICON            IDI_MAIN, IDC_STATIC, 7, 7, 32, 32, SS_ICON
+    LTEXT           ABOUT_CONTENT, IDC_STATIC, 36, 7, 116, 8, SS_NOPREFIX
+    LTEXT           ABOUT_VERSION, IDC_STATIC, 36, 17, 116, 8, SS_NOPREFIX
+    LTEXT           ABOUT_COPYRIGHT, IDC_STATIC, 36, 27, 116, 8, SS_NOPREFIX
+    DEFPUSHBUTTON   "OK", IDOK, 40, 45, 50, 14, WS_TABSTOP
+END
+
+// Version Information
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION MAJOR_VERSION, MINOR_VERSION, BUILD_VERSION
+ PRODUCTVERSION MAJOR_VERSION, MINOR_VERSION, BUILD_VERSION
+ FILEFLAGSMASK VS_FFI_FILEFLAGSMASK // 0x0000003F
+#ifdef _DEBUG
+ FILEFLAGS VS_FF_DEBUG // 0x00000001L // Debug build
+#else
+ FILEFLAGS VS_FF_RELEASE // 0x00000000L // Release build
+#endif  // _DEBUG
+ FILEOS VOS_NT_WINDOWS32 // 0x00040004L (Windows NT and later)
+ FILETYPE VFT_APP // 0x00000001L
+ FILESUBTYPE VFT2_UNKNOWN // 0x00000000L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0" // 0x0409 = US English, 0x04B0 = Unicode (1200)
+        BEGIN
+            VALUE "Comments",         COMMENTS
+            VALUE "CompanyName",      COMPANYNAME
+            VALUE "FileDescription",  FILE_DESCRIPT
+            VALUE "FileVersion",      VERSION_STRING
+            VALUE "InternalName",     INTERNAL_NAME
+            VALUE "LegalCopyright",   LEGAL_COPYRIGHT
+            VALUE "LegalTrademarks",  TRADEMARKS
+            VALUE "OriginalFilename", ORIG_FILENAME
+            VALUE "ProductName",      PRODUCT_NAME
+            VALUE "ProductVersion",   VERSION_STRING
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        // Must match the language/codepage of the StringFileInfo block above.
+        VALUE "Translation", 0x0409, 1200
+    END
+END
+
