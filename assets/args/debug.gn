@@ -1,0 +1,31 @@
+# Target OS/Architecture
+target_os = "win"
+target_cpu = "x86"
+
+# Debug/Release Flags
+is_debug = true
+dcheck_enabled = true
+is_official_build = false
+
+# C++ Standard to use
+cpp_std = "17"
+
+c_std = "99"
+
+# Target Windows version.
+winver = "2000"
+
+# Whether to enable common controls
+use_common_controls = true
+
+use_mmx = true
+use_sse = true
+use_sse2 = false
+use_sse3 = false
+use_sse41 = false
+use_sse42 = false
+use_avx = false
+use_aes = false
+use_avx2 = false
+use_fma = false
+use_avx512 = false
