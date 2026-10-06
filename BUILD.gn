@@ -1,0 +1,54 @@
+# Copyright 2026 Alex313031
+
+group("torqalc_win32") {
+  public_deps = [ ":torqalc" ]
+}
+
+executable("torqalc") {
+  configs += [
+    ":torqalc_win32_config",
+  ]
+  precompiled_header = "src/framework.h"
+  precompiled_source = "src/pch.pch"
+  sources = [
+    "src/constants.h",
+    "src/convert.cc",
+    "src/convert.h",
+    "src/framework.h",
+    "src/globals.h",
+    "src/main.cc",
+    "src/main.h",
+    "src/resource.h",
+    "src/torqalc.rc",
+    "src/utils.cc",
+    "src/utils.h",
+    "src/version.h",
+  ]
+
+  deps = [ "src/logging:torqlogger", ]
+
+  output_name = "torqalc"
+  if (is_debug || dcheck_enabled) {
+    output_name += "_debug"
+  }
+}
+
+config("torqalc_win32_config") {
+  configs = [
+    "./src/logging:torqlogger_config",
+  ]
+  defines = []
+  cflags = []
+  include_dirs = [ "./src", ]
+  cflags += [
+    "-Wunused-function",
+  ]
+  libs = [
+    "kernel32",
+    "user32",
+    "shell32",
+    "comctl32",
+    "comdlg32",
+    "gdi32",
+  ]
+}
